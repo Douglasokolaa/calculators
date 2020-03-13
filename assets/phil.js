@@ -35,35 +35,54 @@ const handleSymbol = (value) => {
             break;
         case "=":
             if (previousOperator === null) {
-                return
+                return;
             }
+            flushOperation(parseInt(buffer));
+            previousOperator = null;
+            buffer = +runningTotal;
+            runningTotal = 0;
+            break;
+        case "←":
+            if (buffer.length == 1) {
+                buffer = "0";
+            } else {
+                buffer = buffer.substring(0, buffer.length-1);
+            }
+            console.log(buffer + " and " + value)
+
+            break;
+        case "+":
+        case "-":
+        case "x":
+        case "/":
+            handleMath(value);
+            break;
     }
 }
 
-const handleMath = (buffer)=>{
-    if (buffer === "0"){
+const handleMath = (value) => {
+    if (buffer === "0") {
         // do nothing
         return;
     }
     const intBuffer = parseInt(buffer);
-    if(runningTotal === 0){
+    if (runningTotal === 0) {
         runningTotal = intBuffer;
     } else {
-        flushOperation 
+        flushOperation(intBuffer)
     }
-
-previousOperator = value;
-buffer = "0";
+    previousOperator = value;
+    buffer = "0";
 }
 
 const flushOperation = (intBuffer) => {
-    if (previousOperator === "+"){
+    if (previousOperator === "+") {
         runningTotal += intBuffer;
-    } else  if (previousOperator === "-"){
+    } else if (previousOperator === "-") {
         runningTotal -= intBuffer;
-    } else  if (previousOperator === "x"){
+    } else if (previousOperator === "x") {
         runningTotal *= intBuffer;
-    } else  {
+    } else {
         runningTotal /= intBuffer;
     }
 }
