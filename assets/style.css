@@ -1,0 +1,27 @@
+.card-header{
+    height: 60px !important;
+    overflow: hidden;
+    font-size: 30px;
+}
+button{
+    font-size: 30px !important;
+    font-weight: bold !important;
+}
+.ww{
+    min-width: 300px !important;
+    max-width: 300px;
+}
+
+*{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.btn-light{
+    padding: 10px 5px ;
+}
+
+.btn:click{
+    flex-grow: 1;
+    box-shadow: 0 5px green;
+
+}
