@@ -28,6 +28,7 @@ const handleNumber = (value) => {
 }
 
 const handleSymbol = (value) => {
+    console.log(buffer)
     switch (value) {
         case "AC":
             buffer = "0";
@@ -48,8 +49,14 @@ const handleSymbol = (value) => {
             } else {
                 buffer = buffer.substring(0, buffer.length-1);
             }
-            console.log(buffer + " and " + value)
-
+            break;
+            case ".":
+            if(buffer.indexOf(".") != -1){
+                return;
+            } else {
+                buffer += value;
+                console.log(buffer)
+            }
             break;
         case "+":
         case "-":
@@ -57,7 +64,8 @@ const handleSymbol = (value) => {
         case "/":
             handleMath(value);
             break;
-    }
+    }             
+
 }
 
 const handleMath = (value) => {
